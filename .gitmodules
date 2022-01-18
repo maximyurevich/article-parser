@@ -1,0 +1,3 @@
+[submodule "aio_fetch"]
+	path = aio_fetch
+	url = https://github.com/maximyurevich/aio-fetch
