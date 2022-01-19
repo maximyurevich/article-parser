@@ -1,7 +1,7 @@
 """Template method article parser"""
 from abc import ABC, abstractmethod
 import logging
-from newspaper import Article
+from newspaper import Article, Config
 
 
 logging.basicConfig(level=logging.INFO)
@@ -26,9 +26,13 @@ class AbstractArticleParser(ABC):
 
     async def load_article(self) -> None:
         """Load and parse article"""
-        article = Article(self.url)
+        config = Config()
+        config.memoize_articles = False
+
+        article = Article(self.url, config=config)
         article.download()
         article.parse()
+
         self.article = article
 
     @abstractmethod
