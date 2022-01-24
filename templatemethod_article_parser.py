@@ -28,12 +28,14 @@ class AbstractArticleParser(ABC):
         """Load and parse article"""
         config = Config()
         config.memoize_articles = False
+        config.language = "ru"
 
         article = Article(self.url, config=config)
         article.download()
         article.parse()
 
         self.article = article
+
 
     @abstractmethod
     async def read_article(self):
