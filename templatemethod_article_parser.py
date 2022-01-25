@@ -1,6 +1,7 @@
 """Template method article parser"""
 from abc import ABC, abstractmethod
 import logging
+from bs4 import BeautifulSoup
 from newspaper import Article, Config
 
 
@@ -40,4 +41,9 @@ class AbstractArticleParser(ABC):
     @abstractmethod
     async def read_article(self):
         """Read article and return content"""
+        ...
+
+    @classmethod
+    async def edit_article(cls):
+        """Modify article source code"""
         ...
