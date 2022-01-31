@@ -1,7 +1,6 @@
 """Template method article parser"""
 from abc import ABC, abstractmethod
 import logging
-from bs4 import BeautifulSoup
 from newspaper import Article, Config
 
 
@@ -28,8 +27,8 @@ class AbstractArticleParser(ABC):
     async def load_article(self) -> None:
         """Load and parse article"""
         config = Config()
+        config.request_timeout = 60
         config.memoize_articles = False
-        config.language = "ru"
 
         article = Article(self.url, config=config)
         article.download()
@@ -37,13 +36,7 @@ class AbstractArticleParser(ABC):
 
         self.article = article
 
-
     @abstractmethod
     async def read_article(self):
         """Read article and return content"""
-        ...
-
-    @classmethod
-    async def edit_article(cls):
-        """Modify article source code"""
         ...
