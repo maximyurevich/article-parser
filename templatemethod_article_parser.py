@@ -27,7 +27,7 @@ class AbstractArticleParser(ABC):
     async def load_article(self) -> None:
         """Load and parse article"""
         config = Config()
-        config.request_timeout = 60
+        config.request_timeout = 10
         config.memoize_articles = False
 
         article = Article(self.url, config=config)
